@@ -21,12 +21,15 @@ margin-left: 0; */
 #search-button{
     /* background-color: blue; */
 }
+#search-button-icon{
+    display: inline-block;
+}
 .search-history{
     /* background-color: pink;
 border: 1px solid black; */
 }
 
-.weather-display{
+.current-weather-display{
     background-color: pink;
     border: 1px solid black;
     display: none;
