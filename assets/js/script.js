@@ -7,7 +7,8 @@ var humidity = $("#humidity");
 var windspeed = $("#wind-speed");
 var weatherDisplay = $(".current-weather-display");
 var now = dayjs().format("MMMM D, YYYY");
-
+// var lat;
+// var lon;
 
 
 function displayWeather(event){
@@ -21,7 +22,7 @@ if(city !== ""){
     fetchCityDetails(city);
 }
 
-console.log(city);
+// console.log(city);
 }
 
 function fetchCityDetails(city){
@@ -43,6 +44,11 @@ weatherDisplay.append("<h3>"+data.name + " <span>"+now+"<img src="+iconURL+" alt
 weatherDisplay.append("<p>Temperature: "+data.main.temp+"°F</p>");
 weatherDisplay.append("<p>Humidity: "+data.main.humidity+"%</p>");
 weatherDisplay.append("<p>Wind Speed: "+data.wind.speed+"MPH</p>");
+var lat = data.coord.lat;
+var lon = data.coord.lon;
+console.log(lat);
+console.log(lon);
+display5DayForecast(lat, lon);
     // cityName.innerText= data.name;
     // temperature.innerText = data.main.temp;
     // humidity.innerText = data.main.humidity;
@@ -55,6 +61,18 @@ weatherDisplay.append("<p>Wind Speed: "+data.wind.speed+"MPH</p>");
     
    }
     )
+}
+function display5DayForecast(lat, lon){
+    var futureWeatherApi = "https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid="+ApiKey;
+    fetch(futureWeatherApi)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        console.log(data);
+    }
+    )
+    // console.log(futureWeatherApi);
 }
 
 
