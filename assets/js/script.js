@@ -88,6 +88,10 @@ function display5DayForecast(lat, lon) {
             }
             console.log(result5);
             for (var i = 0; i < result5.length; i++) {
+                var date = result5[i].dt;
+                // console.log(date);
+                var newDate = dayjs(date*1000).format("MM/DD/YYYY");
+                console.log(newDate);
                 var icon = result5[i].weather[0].icon;
                 var iconDesc = result5[i].weather[0].description;
                 var URLforIcon = "http://openweathermap.org/img/wn/" + icon + ".png";
@@ -95,7 +99,7 @@ function display5DayForecast(lat, lon) {
                 var wind = result5[i].wind.speed;
                 var humidity = result5[i].main.humidity;
                 var singleCard = 
-                $('<div class="weather-stats"><p><img src='+URLforIcon+'></p><p>'+temp+'°F</p><p>'+wind+'MPH</p><p>'+humidity+'%</p></div>');
+                $('<div class="weather-stats"><p></p>'+newDate+'<p><img src='+URLforIcon+'alt='+iconDesc+'></p><p>'+temp+'°F</p><p>'+wind+'MPH</p><p>'+humidity+'%</p></div>');
                 fivedayDisplay.append(singleCard);
                 fivedayDisplay.show();
                 fivedayDisplay.css("display", "flex")
