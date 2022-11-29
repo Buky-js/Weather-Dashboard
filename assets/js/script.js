@@ -16,14 +16,9 @@ function displayWeather(event) {
     }
     if (city !== "") {
         fetchCityDetails(city);
-        // cities.unshift(city);
-        // console.log(cities);
-     
-        // inputField.text("");
+        addCityToSearchHistory(city);
     }
-    // if (cities.indexOf(city)=== -1)
 
-    // saveCities();
 }
 
 // function saveCities(){
@@ -53,55 +48,43 @@ function fetchCityDetails(city) {
             weatherDisplay.append("<p>Wind Speed: " + data.wind.speed + "MPH</p>");
             var lat = data.coord.lat;
             var lon = data.coord.lon;
-            // console.log(lat);
-            // console.log(lon);
+
             display5DayForecast(lat, lon);
-        //   if(data.cod === 200){
-        //     cities = JSON.parse(localStorage.getItem("cities"));
-        //     console.log(cities);
-        //     if (cities==null){
-        //         cities.push(city.toUpperCase());
-        //         localStorage.setItem("cities", JSON.stringify(cities));
-                addCityToSearchHistory(city);
-            }
-          
-          
-    
+
+            
+        }
+
+
+
         )
-       
-        
+
+
 }
 function display5DayForecast(lat, lon) {
     fivedayDisplay.show();
     fivedayDisplay.css("display", "flex");
     fivedayDisplay.empty();
-    
+
     var futureWeatherApi = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + ApiKey;
     fetch(futureWeatherApi)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            // console.log(data);
 
 
-            // console.log(output[i]);
-            // var result = output[i];
             var result5 = new Array();
             for (var i = 0; i < 5; i++) {
                 result5.push(data.list[i * 8]);
-                // var temperature = result5[0].main.temp;
-                // console.log(typeof(result5));
-                // }
 
 
             }
-            // console.log(result5);
+
             for (var i = 0; i < result5.length; i++) {
-               
+
                 var date = result5[i].dt;
                 // console.log(date);
-                var newDate = dayjs(date*1000).format("MM/DD/YYYY");
+                var newDate = dayjs(date * 1000).format("MM/DD/YYYY");
                 // console.log(newDate);
                 var icon = result5[i].weather[0].icon;
                 var iconDesc = result5[i].weather[0].description;
@@ -109,22 +92,22 @@ function display5DayForecast(lat, lon) {
                 var temp = result5[i].main.temp;
                 var wind = result5[i].wind.speed;
                 var humidity = result5[i].main.humidity;
-                var singleCard = 
-                $('<div class="weather-stats"><p>'+newDate+'</p><p><img src='+URLforIcon+' alt='+iconDesc+'></p><p>'+temp+'°F</p><p>'+wind+'MPH</p><p>'+humidity+'%</p></div>');
+                var singleCard =
+                    $('<div class="weather-stats"><p>' + newDate + '</p><p><img src=' + URLforIcon + ' alt=' + iconDesc + '></p><p>' + temp + '°F</p><p>' + wind + 'MPH</p><p>' + humidity + '%</p></div>');
                 fivedayDisplay.append(singleCard);
 
             }
-     })
+        })
 
 }
-function SearchCityButton(event){
-event.preventDefault();
+function SearchCityButton(event) {
+    event.preventDefault();
 
 }
-function addCityToSearchHistory(city){
+function addCityToSearchHistory(city) {
     var c = city.charAt(0).toUpperCase() + city.slice(1);
-    var citySearched = $("<button>"+c+"</button>");
-    citySearched.addClass("d-flex w-100 btn-light border p-2");
+    var citySearched = $("<button>" + c + "</button>");
+    citySearched.addClass("d-flex w-100 btn-light border p-2 searched-city");
     citySearched.attr("data-value", c);
     citySearched.attr("type", "submit");
     searchHistory.prepend(citySearched);
@@ -135,5 +118,11 @@ function addCityToSearchHistory(city){
 
     // }
 }
-
+searchHistory.on("click", function(e){
+    if($(e.target).hasClass("searched-city")){
+    //    console.log(e.target.innerText);
+    var citySelected = e.target.innerText;
+   fetchCityDetails(citySelected);
+    }
+})
 searchButton.on("click", displayWeather);
