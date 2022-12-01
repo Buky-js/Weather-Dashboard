@@ -35,8 +35,11 @@ function fetchCityDetails(city) {
             return response.json();
         })
         .then(function (data) {
-            // console.log(data);
-
+             console.log(data);
+if (data.cod !== 200){
+alert("Please enter a valid city name");
+return;
+}
 
             // cityName.innerText= data.name;
             var weatherIcon = data.weather[0].icon;
