@@ -114,10 +114,8 @@ function display5DayForecast(lat, lon) {
         })
 
 }
-// function SearchCityButton(event) {
-//     event.preventDefault();
-
-// }
+// function to add cities to the search history box
+// buttons are created dynamically
 function addCityToSearchHistory(city) {
     var c = city.charAt(0).toUpperCase() + city.slice(1);
     var citySearched = $("<button>" + c + "</button>");
@@ -128,15 +126,16 @@ function addCityToSearchHistory(city) {
     console.log(searchHistory);
     var cityList = searchHistory[0].innerText.length;
     console.log(cityList);
-    // if(cityList.includes("c")){
 
-    // }
 }
+
+// displays the city's weather statistics when button in the search history is clicked
 searchHistory.on("click", function(e){
     if($(e.target).hasClass("searched-city")){
-    //    console.log(e.target.innerText);
     var citySelected = e.target.innerText;
    fetchCityDetails(citySelected);
     }
 })
+
+// displays a city's weather stats when the city name is provided in the input field
 searchButton.on("click", displayWeather);

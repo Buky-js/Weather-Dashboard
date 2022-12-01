@@ -15,17 +15,16 @@
 
 <body>
     <div class="container">
-        <div class="row weather-header">
+        <!-- the header for the app -->
+        <header class="row weather-header">
             <div class="col-12 text-center">
                 <h1>Weather Dashboard</h1>
             </div>
-        </div>
+        </header>
 
         <div class="row">
-            <div class="col-sm-3 bg-light ">
-
-                <!-- <h5>Search for a city</h5> -->
-
+            <!-- column for the search box and search history -->
+            <div class="col-sm-3  ">
 
                 <form>
                     <label for="search-city">Search for a City:</label>
@@ -34,27 +33,20 @@
                         <button class="btn btn-primary mt-1 mb-1" type="submit" id="search-button"><i
                                 class="fa-sharp fa-solid fa-magnifying-glass "></i></button>
                     </div>
-                    <!-- <div class="form-row">
-                       
-                    </div> -->
+
                 </form>
                 <div>
-                    <p>Search History</p>
-                    <!-- <button class=" btn btn-primary" type="button" id="clear-history">Clear history</button> -->
+                    <p class="d-flex w-100 border mb-0 p-2" id="" >Search History</p>
+
                     <ul class="list-group"></ul>
                 </div>
 
             </div>
 
             <div class="col-sm-9">
-                <div class="row border border-dark rounded current-weather-display">
+                <div class="row border rounded current-weather-display">
                     <div class="col-sm-12 ">
-                        <!-- <h3 class="city-name mt-1 mb-2 bolder" id="current-city"></h3>
-                       
-                       
-                        <p id="temperature"></p>
-                        <p id="humidity"></p>
-                        <p id="wind-speed"></p> -->
+
                     </div>
                 </div>
                 <div class="row five-day-display mt-2 pt-1 pb-1">
