@@ -10,7 +10,8 @@ Below is how the application works:
 * When user clicks on a city in the search history, he is again presented with current and future conditions for that city
 
 ## URLs
-
+The URL of the deployed application is: https://buky-js.github.io/Weather-Dashboard/
+The URL of the GitHub repository containing the code is: https://github.com/Buky-js/Weather-Dashboard
 
 ## Technologies used
 HTML, Bootstrap, CSS, Jquery, Javascript
