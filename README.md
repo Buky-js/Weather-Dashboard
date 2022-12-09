@@ -11,6 +11,7 @@ Below is how the application works:
 
 ## URLs
 The URL of the deployed application is: https://buky-js.github.io/Weather-Dashboard/
+
 The URL of the GitHub repository containing the code is: https://github.com/Buky-js/Weather-Dashboard
 
 ## Technologies used
